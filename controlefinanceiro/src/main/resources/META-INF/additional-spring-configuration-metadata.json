@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "application.name",
+    "type": "java.lang.String",
+    "description": "A description for 'application.name'"
+  },
+  {
+    "name": "apring.datasource.driver-class-name",
+    "type": "java.lang.String",
+    "description": "A description for 'apring.datasource.driver-class-name'"
+  },
+  {
+    "name": "apring.datasourcedriver-class-name",
+    "type": "java.lang.String",
+    "description": "A description for 'apring.datasourcedriver-class-name'"
+  }
+]}
