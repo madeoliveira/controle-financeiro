@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="UsuarioRepositoryTest" project="controlefinanceiro" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="github.madeoliveira.controlefinanceiro.model.repository.UsuarioRepositoryTest" time="0.848">
+    <testcase name="deveVerificarAExistenciaDeUmEmail" classname="github.madeoliveira.controlefinanceiro.model.repository.UsuarioRepositoryTest" time="0.835"/>
+    <testcase name="deveRetornarFalsoQuandoNaoHouverCadastroComOEmail" classname="github.madeoliveira.controlefinanceiro.model.repository.UsuarioRepositoryTest" time="0.013"/>
+  </testsuite>
+</testrun>

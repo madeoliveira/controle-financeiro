@@ -1,5 +1,7 @@
 package github.madeoliveira.controlefinanceiro.model.repository;
 
+import java.util.Optional;
+
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,10 +39,35 @@ public class UsuarioRepositoryTest {
 
 	@Test
 	public void deveRetornarFalsoQuandoNaoHouverCadastroComOEmail() {
-	
+
 		boolean result = repository.existsByEmail("usuario@email.com");
 
 		Assertions.assertThat(result).isFalse();
+	}
+
+	@Test
+	public void devePersistirUmUsuarioNaBaseDeDados() {
+		Usuario usuario = criarUsuario();
+		Usuario usuarioSalvo = repository.save(usuario);
+		Assertions.assertThat(usuarioSalvo.getId()).isNotNull();
+	}
+
+	@Test
+	public void deveBuscarUmUsuarioPorEmail() {
+		Usuario usuario = criarUsuario();
+		entityManeger.persist(usuario);
+		Optional<Usuario> result = repository.findByEmail("usuario@email.com");
+		Assertions.assertThat(result.isPresent()).isTrue();
+	}
+	@Test
+	public void deveRetornarVazioAoBuscarUsuarioPorEmailQuandoNaoExisteNaBase() {
+		
+		Optional<Usuario> result = repository.findByEmail("usuario@email.com");
+		Assertions.assertThat(result.isPresent()).isFalse();
+	}
+
+	public static Usuario criarUsuario() {
+		return Usuario.builder().nome("usuario").email("usuario@email.com").senha("senha").build();
 	}
 
 }
