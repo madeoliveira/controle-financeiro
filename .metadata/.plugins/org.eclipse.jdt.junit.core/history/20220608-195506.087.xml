@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="UsuarioServiceText" project="controlefinanceiro" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="github.madeoliveira.controlefinanceiro.service.UsuarioServiceText" time="0.462">
+    <testcase name="deveValidarEmail" classname="github.madeoliveira.controlefinanceiro.service.UsuarioServiceText" time="0.459"/>
+    <testcase name="deveLancarErroAoValidarEmailQuandoExistirEmailCadastrado" classname="github.madeoliveira.controlefinanceiro.service.UsuarioServiceText" time="0.002"/>
+  </testsuite>
+</testrun>
