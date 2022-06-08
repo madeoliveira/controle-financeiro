@@ -1,9 +1,12 @@
 package github.madeoliveira.controlefinanceiro.service.impl;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import github.madeoliveira.controlefinanceiro.exceptions.ErroAutenticacao;
 import github.madeoliveira.controlefinanceiro.exceptions.RegraNegocioException;
 import github.madeoliveira.controlefinanceiro.model.entity.Usuario;
 import github.madeoliveira.controlefinanceiro.model.repository.UsuarioRepository;
@@ -22,8 +25,14 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	public Usuario autenticar(String email, String senha) {
-		
-		return null;
+		Optional<Usuario> usuario = repository.findByEmail(email);
+		if (!usuario.isPresent()) {
+			throw new ErroAutenticacao("Usuario não encontrado");
+		}
+		if (usuario.get().getSenha().equals(senha)) {
+			throw new ErroAutenticacao("Senha invalida!");
+		}
+		return usuario.get();
 	}
 
 	@Override
@@ -40,5 +49,5 @@ public class UsuarioServiceImpl implements UsuarioService {
 			throw new RegraNegocioException("Já existe um usuário com este email. ");
 		}
 	}
- 
+
 }

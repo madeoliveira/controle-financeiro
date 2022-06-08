@@ -7217,3 +7217,51 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-06-08 18:25:31.973
+!MESSAGE Entering DelegatingStreamConnectionProvider()
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-06-08 18:25:31.992
+!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@5c7dee55[org.springframework.tooling.boot.ls:1.32.0.202203131529(id=989)]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-06-08 18:25:32.066
+!MESSAGE SpringBootLanguageServer exists!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-06-08 18:25:32.453
+!MESSAGE Instantiating ReusableClasspathListenerHandler
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-06-08 18:25:39.572
+!MESSAGE Boot LS startup time from start to initialized: 7296ms
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-06-08 18:25:40.730
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.qLLgbtmmisBatched = true
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-06-08 18:25:40.751
+!MESSAGE Setting up ClasspathListenerManager
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-06-08 18:25:40.754
+!MESSAGE Scheduling initial event for all projects ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-06-08 18:25:40.754
+!MESSAGE Scheduling initial event for all projects DONE
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-06-08 18:25:40.755
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-06-08 18:25:40.755
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.qLLgbtmm => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-06-08 18:25:40.760
+!MESSAGE classpath=83 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-06-08 18:25:40.811
+!MESSAGE buffering callback sts4.classpath.qLLgbtmm controlefinanceiro false 83
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-06-08 18:25:40.812
+!MESSAGE executing callback sts4.classpath.qLLgbtmm 1 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-06-08 18:25:42.081
+!MESSAGE executing callback sts4.classpath.qLLgbtmm SUCCESS [done]
+
+!ENTRY org.eclipse.ui 2 2 2022-06-08 18:29:25.099
+!MESSAGE Invalid property category path: org.springframework.ide.eclipse.beans.ui.properties.ProjectPropertyPage (bundle: org.springframework.ide.eclipse.xml.namespaces, propertyPage: org.springframework.ide.eclipse.beans.ui.namespaces.projectPropertyPage)
