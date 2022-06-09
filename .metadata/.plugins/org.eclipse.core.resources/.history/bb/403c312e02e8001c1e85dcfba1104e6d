@@ -41,7 +41,7 @@ public class UsuarioServiceText {
 		Assertions.assertThat(result).isNotNull();
 	}
 
-	@Test
+	@Test(expected = ErroAutenticacao.class)
 	public void deveLancarErroQuandoNaoEncontrarUsuarioCadastradoComEmailInformado() {
 		Mockito.when(repository.findByEmail(Mockito.anyString())).thenReturn(Optional.empty());
 		Throwable exception = Assertions.catchThrowable(() -> service.autenticar("usuario@email.com", "senha"));
