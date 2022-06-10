@@ -15,6 +15,4 @@ public interface LancamentoService {
 	List<Lancamento> buscar(Lancamento lancamentoFiltro);
 
 	void atualizarStatus(Lancamento lancamento, StatusLancamento staus);
-	
-	void validar (Lancamento lancamento);
 }
