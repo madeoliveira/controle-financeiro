@@ -1,0 +1,60 @@
+package github.madeoliveira.controlefinanceiro.api.resource;
+
+import javax.validation.ReportAsSingleViolation;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import github.madeoliveira.controlefinanceiro.api.dto.LancamentoDTO;
+import github.madeoliveira.controlefinanceiro.enums.StatusLancamento;
+import github.madeoliveira.controlefinanceiro.enums.TipoLancamento;
+import github.madeoliveira.controlefinanceiro.exceptions.RegraNegocioException;
+import github.madeoliveira.controlefinanceiro.model.entity.Lancamento;
+import github.madeoliveira.controlefinanceiro.model.entity.Usuario;
+import github.madeoliveira.controlefinanceiro.service.LancamentoService;
+import github.madeoliveira.controlefinanceiro.service.UsuarioService;
+
+@RestController
+@RequestMapping("/api/lancamentos")
+public class LancamentoResource {
+
+	private LancamentoService service;
+	private UsuarioService usuarioService;
+
+	public LancamentoResource(LancamentoService service) {
+		this.service = service;
+	}
+
+	@PostMapping
+	public ResponseEntity salvar(@RequestBody LancamentoDTO dto) {
+		try {
+			Lancamento entidade = converter(dto);
+			entidade = service.salvar(entidade);
+			return ResponseEntity.ok(entidade);
+		}catch (RegraNegocioException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	}
+
+	private Lancamento converter(LancamentoDTO dto) {
+		Lancamento lancamento = new Lancamento();
+		lancamento.setId(dto.getId());
+		lancamento.setDescricao(dto.getDescricao());
+		lancamento.setAno(dto.getAno());
+		lancamento.setMes(dto.getMes());
+		lancamento.setValor(dto.getValor());
+
+		Usuario usuario = usuarioService.obterPorId(dto.getUsuario())
+				.orElseThrow(() -> new RegraNegocioException("Usuário não encontrado para o id informado"));
+
+		lancamento.setUsuario(usuario);
+		lancamento.setTipo(TipoLancamento.valueOf(dto.getTipo()));
+		lancamento.setStatus(StatusLancamento.valueOf(dto.getStatus()));
+
+		return lancamento;
+	}
+
+}

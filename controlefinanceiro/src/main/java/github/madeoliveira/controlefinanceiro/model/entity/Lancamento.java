@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
@@ -24,7 +25,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-//@Table(name = "lancamento", schema = "dbfinanca")
+@Table(name = "lancamento", schema = "dbfinanca")
 @Builder
 @Data
 @NoArgsConstructor
