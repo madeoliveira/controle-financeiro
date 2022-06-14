@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import github.madeoliveira.controlefinanceiro.api.dto.AtualizarStatusDTO;
 import github.madeoliveira.controlefinanceiro.api.dto.LancamentoDTO;
 import github.madeoliveira.controlefinanceiro.enums.StatusLancamento;
 import github.madeoliveira.controlefinanceiro.enums.TipoLancamento;
@@ -44,6 +45,25 @@ public class LancamentoResource {
 		}
 	}
 
+	@PutMapping("{id}/atualizar-status")
+	public ResponseEntity atualizarStatus(@PathVariable("id") Long id, @RequestBody AtualizarStatusDTO dto) {
+		return service.obterPorId(id).map(entity -> {
+			StatusLancamento statusSelecionado = StatusLancamento.valueOf(dto.getStatus());
+			if (statusSelecionado == null) {
+				return ResponseEntity.badRequest()
+						.body("Não foi possivel atualizar o status do lançamento, informe um status válido");
+			}
+			try {
+				entity.setStatus(statusSelecionado);
+				service.atualizar(entity);
+				return ResponseEntity.ok(entity);
+			} catch (RegraNegocioException e) {
+				return ResponseEntity.badRequest().body(e.getMessage());
+			}
+
+		}).orElseGet(() -> new ResponseEntity("Lancamento não encontrado na base de Dados.", HttpStatus.BAD_REQUEST));
+	}
+
 	@PutMapping("/{id}")
 	public ResponseEntity atualizar(@PathVariable("id") Long id, @RequestBody LancamentoDTO dto) {
 		return service.obterPorId(id).map(entity -> {
@@ -55,11 +75,10 @@ public class LancamentoResource {
 			} catch (RegraNegocioException e) {
 				return ResponseEntity.badRequest().body(e.getMessage());
 			}
-
-		}).orElseGet(() -> new ResponseEntity("Lancamento não encontrado na base de dados.", HttpStatus.BAD_REQUEST));
+		}).orElseGet(() -> new ResponseEntity("Lancamento não encontrado na base de Dados.", HttpStatus.BAD_REQUEST));
 	}
 
-	@DeleteMapping("{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity deletar(@PathVariable("id") Long id) {
 		return service.obterPorId(id).map(entidade -> {
 			service.deletar(entidade);
@@ -71,20 +90,22 @@ public class LancamentoResource {
 	public ResponseEntity buscar(@RequestParam(value = "descricao", required = false) String descricao,
 			@RequestParam(value = "mes", required = false) Integer mes,
 			@RequestParam(value = "ano", required = false) Integer ano, @RequestParam("usuario") Long idUsuario) {
+
 		Lancamento lancamentoFiltro = new Lancamento();
 		lancamentoFiltro.setDescricao(descricao);
 		lancamentoFiltro.setMes(mes);
 		lancamentoFiltro.setAno(ano);
 
 		Optional<Usuario> usuario = usuarioService.obterPorId(idUsuario);
-		if (usuario.isPresent()) {
+		if (!usuario.isPresent()) {
 			return ResponseEntity.badRequest()
-					.body("Não foi possivel realizar a consulta. Usuário não encontrado com o id informado.");
+					.body("Não foi possível realizar a consulta. Usuário não encontrado para o Id informado.");
 		} else {
 			lancamentoFiltro.setUsuario(usuario.get());
 		}
-		List<Lancamento> lancamento = service.buscar(lancamentoFiltro);
-		return ResponseEntity.ok(lancamento);
+
+		List<Lancamento> lancamentos = service.buscar(lancamentoFiltro);
+		return ResponseEntity.ok(lancamentos);
 	}
 
 	private Lancamento converter(LancamentoDTO dto) {
@@ -96,11 +117,17 @@ public class LancamentoResource {
 		lancamento.setValor(dto.getValor());
 
 		Usuario usuario = usuarioService.obterPorId(dto.getUsuario())
-				.orElseThrow(() -> new RegraNegocioException("Usuário não encontrado para o id informado"));
+				.orElseThrow(() -> new RegraNegocioException("Usuário não encontrado para o Id informado."));
 
 		lancamento.setUsuario(usuario);
-		lancamento.setTipo(TipoLancamento.valueOf(dto.getTipo()));
-		lancamento.setStatus(StatusLancamento.valueOf(dto.getStatus()));
+
+		if (dto.getTipo() != null) {
+			lancamento.setTipo(TipoLancamento.valueOf(dto.getTipo()));
+		}
+
+		if (dto.getStatus() != null) {
+			lancamento.setStatus(StatusLancamento.valueOf(dto.getStatus()));
+		}
 
 		return lancamento;
 	}
