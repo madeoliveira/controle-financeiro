@@ -12,22 +12,21 @@ import github.madeoliveira.controlefinanceiro.exceptions.ErroAutenticacao;
 import github.madeoliveira.controlefinanceiro.exceptions.RegraNegocioException;
 import github.madeoliveira.controlefinanceiro.model.entity.Usuario;
 import github.madeoliveira.controlefinanceiro.service.UsuarioService;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/usuarios")
+@RequiredArgsConstructor
 public class UsuarioResource {
 
-	private UsuarioService service;
+	private final UsuarioService service;
 
-	public UsuarioResource(UsuarioService service) {
-		this.service = service;
-	}
 	@PostMapping("/autenticar")
 	public ResponseEntity autenticar(@RequestBody UsuarioDTO dto) {
 		try {
 			Usuario usuarioAutenticacao = service.autenticar(dto.getEmail(), dto.getSenha());
 			return ResponseEntity.ok(usuarioAutenticacao);
-		}catch(ErroAutenticacao e) {
+		} catch (ErroAutenticacao e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 	}
@@ -38,10 +37,9 @@ public class UsuarioResource {
 		try {
 			Usuario usuarioSalvo = service.salvarUsuario(usuario);
 			return new ResponseEntity(usuarioSalvo, HttpStatus.CREATED);
-		}catch (RegraNegocioException e) {
+		} catch (RegraNegocioException e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 	}
-	
 
 }
