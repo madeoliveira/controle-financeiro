@@ -1,5 +1,6 @@
 package github.madeoliveira.controlefinanceiro.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,8 +17,10 @@ public interface LancamentoService {
 	List<Lancamento> buscar(Lancamento lancamentoFiltro);
 
 	void atualizarStatus(Lancamento lancamento, StatusLancamento staus);
-	
-	void validar (Lancamento lancamento);
-	
+
+	void validar(Lancamento lancamento);
+
 	Optional<Lancamento> obterPorId(Long id);
+
+	BigDecimal obterSaldoPorUsuario(Long id);
 }

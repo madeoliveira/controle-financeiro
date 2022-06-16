@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import github.madeoliveira.controlefinanceiro.enums.StatusLancamento;
+import github.madeoliveira.controlefinanceiro.enums.TipoLancamento;
 import github.madeoliveira.controlefinanceiro.exceptions.RegraNegocioException;
 import github.madeoliveira.controlefinanceiro.model.entity.Lancamento;
 import github.madeoliveira.controlefinanceiro.model.repository.LancamentoRepository;
@@ -90,8 +91,21 @@ public class LancamentoServiceImpl implements LancamentoService {
 
 	@Override
 	public Optional<Lancamento> obterPorId(Long id) {
-		
+
 		return repository.findById(id);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public BigDecimal obterSaldoPorUsuario(Long id) {
+		BigDecimal receitas = repository.obterSaldoPorTipoLancamentoEUsuario(id, TipoLancamento.RECEITA.name());
+		BigDecimal despesas = repository.obterSaldoPorTipoLancamentoEUsuario(id, TipoLancamento.DESPESA.name());
+
+		if (receitas == null) {
+			despesas = BigDecimal.ZERO;
+		}
+
+		return receitas.subtract(despesas);
 	}
 
 }

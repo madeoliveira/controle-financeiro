@@ -1,0 +1,9 @@
+package github.madeoliveira.controlefinanceiro.model.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import github.madeoliveira.controlefinanceiro.model.entity.Lancamento;
+
+public interface LancamentoRepository extends JpaRepository<Lancamento, Long>{
+	BigDecimal obterSaldoPorTipoLancamentoEUsuario();
+}
