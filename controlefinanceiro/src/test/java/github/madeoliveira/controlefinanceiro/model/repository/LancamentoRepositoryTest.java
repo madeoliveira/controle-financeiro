@@ -2,8 +2,11 @@ package github.madeoliveira.controlefinanceiro.model.repository;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Optional;
 
-import org.assertj.core.api.Assertions;
+
+import static org.assertj.core.api.Assertions.*;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +38,7 @@ public class LancamentoRepositoryTest {
 				.valor(BigDecimal.valueOf(10)).tipo(TipoLancamento.RECEITA).status(StatusLancamento.PENDENTE)
 				.dataCadastro(LocalDate.now()).build();
 		lancamento = repository.save(lancamento);
-		Assertions.assertThat(lancamento.getId()).isNotNull();
+		assertThat(lancamento.getId()).isNotNull();
 	}
 
 	private Lancamento criarLancamento() {
@@ -50,6 +53,34 @@ public class LancamentoRepositoryTest {
 		lancamento = entityManager.find(Lancamento.class, lancamento.getId());
 		repository.delete(lancamento);
 		Lancamento lancamentoInexistente = entityManager.find(Lancamento.class, lancamento.getId());
-		Assertions.assertThat(lancamentoInexistente).isNull();
+		assertThat(lancamentoInexistente).isNull();
+	}
+
+	private Lancamento criarEPersistirUmLancamento() {
+		Lancamento lancamento = criarLancamento();
+		entityManager.persist(lancamento);
+		return lancamento;
+	}
+
+	@Test
+	public void deveAtualizarUmLancamento() {
+		Lancamento lancamento = criarEPersistirUmLancamento();
+		lancamento.setAno(2018);
+		lancamento.setDescricao("Teste atualizado");
+		lancamento.setStatus(StatusLancamento.CANCELADO);
+		repository.save(lancamento);
+		Lancamento lancamentoAtualizado = entityManager.find(Lancamento.class, lancamento.getId());
+		
+		assertThat(lancamentoAtualizado.getAno()).isEqualTo(2018);
+		assertThat(lancamentoAtualizado.getDescricao()).isEqualTo("Teste atualizado");
+
+		assertThat(lancamentoAtualizado.getStatus()).isEqualTo(StatusLancamento.CANCELADO);
+	}
+	
+	@Test
+	public void deveBuscarUmLAncamentoPorId() {
+		Lancamento lancamento = criarEPersistirUmLancamento();
+		Optional<Lancamento> lancamentoEncontrado =  repository.findById(lancamento.getId());
+		assertThat(lancamentoEncontrado.isPresent()).isTrue();
 	}
 }
