@@ -1,0 +1,5 @@
+package github.madeoliveira.controlefinanceiro.model.repository;
+
+public class LancamentoRepositoryTest {
+
+}

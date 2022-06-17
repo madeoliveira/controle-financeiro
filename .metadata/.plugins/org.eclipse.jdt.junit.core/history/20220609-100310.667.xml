@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="UsuarioServiceText" project="controlefinanceiro" tests="4" started="4" failures="0" errors="0" ignored="0">
-  <testsuite name="github.madeoliveira.controlefinanceiro.service.UsuarioServiceText" time="0.089">
-    <testcase name="deveLancarErroQuandoNaoEncontrarUsuarioCadastrado" classname="github.madeoliveira.controlefinanceiro.service.UsuarioServiceText" time="0.012"/>
-    <testcase name="deveValidarEmail" classname="github.madeoliveira.controlefinanceiro.service.UsuarioServiceText" time="0.004"/>
-    <testcase name="deveLancarErroAoValidarEmailQuandoExistirEmailCadastrado" classname="github.madeoliveira.controlefinanceiro.service.UsuarioServiceText" time="0.011"/>
-    <testcase name="deveAutenticarUmUsuarioComSucesso" classname="github.madeoliveira.controlefinanceiro.service.UsuarioServiceText" time="0.056"/>
-  </testsuite>
-</testrun>

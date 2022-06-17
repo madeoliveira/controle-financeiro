@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="UsuarioRepositoryTest.devePersistirUmUsuarioNaBaseDeDados" project="controlefinanceiro" tests="1" started="1" failures="0" errors="0" ignored="0">
-  <testcase name="devePersistirUmUsuarioNaBaseDeDados" classname="github.madeoliveira.controlefinanceiro.model.repository.UsuarioRepositoryTest" time="0.21"/>
-</testrun>

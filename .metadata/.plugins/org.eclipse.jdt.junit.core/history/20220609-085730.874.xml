@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="UsuarioRepositoryTest" project="controlefinanceiro" tests="5" started="5" failures="0" errors="0" ignored="0">
-  <testsuite name="github.madeoliveira.controlefinanceiro.model.repository.UsuarioRepositoryTest" time="0.447">
-    <testcase name="deveRetornarVazioAoBuscarUsuarioPorEmailQuandoNaoExisteNaBase" classname="github.madeoliveira.controlefinanceiro.model.repository.UsuarioRepositoryTest" time="0.377"/>
-    <testcase name="deveVerificarAExistenciaDeUmEmail" classname="github.madeoliveira.controlefinanceiro.model.repository.UsuarioRepositoryTest" time="0.039"/>
-    <testcase name="deveRetornarFalsoQuandoNaoHouverCadastroComOEmail" classname="github.madeoliveira.controlefinanceiro.model.repository.UsuarioRepositoryTest" time="0.004"/>
-    <testcase name="deveBuscarUmUsuarioPorEmail" classname="github.madeoliveira.controlefinanceiro.model.repository.UsuarioRepositoryTest" time="0.007"/>
-    <testcase name="devePersistirUmUsuarioNaBaseDeDados" classname="github.madeoliveira.controlefinanceiro.model.repository.UsuarioRepositoryTest" time="0.017"/>
-  </testsuite>
-</testrun>

@@ -1,5 +1,0 @@
-package github.madeoliveira.controlefinanceiro.exceptions;
-
-public class ErroDeAutenticacao {
-
-}
