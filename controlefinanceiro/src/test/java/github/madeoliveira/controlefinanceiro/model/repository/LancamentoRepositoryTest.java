@@ -41,7 +41,7 @@ public class LancamentoRepositoryTest {
 		assertThat(lancamento.getId()).isNotNull();
 	}
 
-	private Lancamento criarLancamento() {
+	 public static Lancamento criarLancamento() {
 		return Lancamento.builder().ano(2020).mes(1).descricao("Lançamento teste").valor(BigDecimal.valueOf(10))
 				.tipo(TipoLancamento.RECEITA).status(StatusLancamento.PENDENTE).dataCadastro(LocalDate.now()).build();
 	}

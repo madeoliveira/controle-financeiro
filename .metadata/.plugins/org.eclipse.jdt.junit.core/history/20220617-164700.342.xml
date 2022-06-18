@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="LancamentoRepositoryTest" project="controlefinanceiro" tests="3" started="3" failures="0" errors="0" ignored="0">
-  <testsuite name="github.madeoliveira.controlefinanceiro.model.repository.LancamentoRepositoryTest" time="0.348">
-    <testcase name="deveAtualizarUmLancamento" classname="github.madeoliveira.controlefinanceiro.model.repository.LancamentoRepositoryTest" time="0.331"/>
-    <testcase name="deveSalvarUmLncamento" classname="github.madeoliveira.controlefinanceiro.model.repository.LancamentoRepositoryTest" time="0.008"/>
-    <testcase name="deveDeletarUmLancamento" classname="github.madeoliveira.controlefinanceiro.model.repository.LancamentoRepositoryTest" time="0.007"/>
-  </testsuite>
-</testrun>

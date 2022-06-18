@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="LancamentoRepositoryTest" project="controlefinanceiro" tests="1" started="1" failures="0" errors="0" ignored="0">
-  <testsuite name="github.madeoliveira.controlefinanceiro.model.repository.LancamentoRepositoryTest" time="0.304">
-    <testcase name="deveSalvarUmLncamento" classname="github.madeoliveira.controlefinanceiro.model.repository.LancamentoRepositoryTest" time="0.304"/>
-  </testsuite>
-</testrun>

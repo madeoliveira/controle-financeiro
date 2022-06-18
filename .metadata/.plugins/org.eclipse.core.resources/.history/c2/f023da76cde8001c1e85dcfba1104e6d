@@ -1,5 +1,0 @@
-package github.madeoliveira.controlefinanceiro.service;
-
-public interface LancamentoService {
-
-}

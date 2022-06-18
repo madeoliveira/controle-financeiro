@@ -1,5 +1,0 @@
-package github.madeoliveira.controlefinanceiro.api.resource;
-
-public class UsuarioResource {
-
-}
