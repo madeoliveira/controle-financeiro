@@ -10,6 +10,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import github.madeoliveira.controlefinanceiro.enums.StatusLancamento;
+import github.madeoliveira.controlefinanceiro.exceptions.RegraNegocioException;
 import github.madeoliveira.controlefinanceiro.model.entity.Lancamento;
 import github.madeoliveira.controlefinanceiro.model.repository.LancamentoRepository;
 import github.madeoliveira.controlefinanceiro.model.repository.LancamentoRepositoryTest;
@@ -43,6 +44,12 @@ public class LancamentoServiceTest {
 
 	@Test
 	public void naoDeveSalvarUmLancamentoQuandoHouverErroDeValidacao() {
+		Lancamento lancamentoASalvar = LancamentoRepositoryTest.criarLancamento();
+		Mockito.doThrow(RegraNegocioException.class).when(service).validar(lancamentoASalvar);
+		
+		Assertions.catchThrowableOfType(() ->  service.salvar(lancamentoASalvar), RegraNegocioException.class);
+		
+		Mockito.verify(repository, Mockito.never()).save(lancamentoASalvar);
 
 	}
 
