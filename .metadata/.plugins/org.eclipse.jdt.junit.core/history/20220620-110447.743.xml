@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="LancamentoServiceTest" project="controlefinanceiro" tests="8" started="8" failures="0" errors="0" ignored="0">
+  <testsuite name="github.madeoliveira.controlefinanceiro.service.LancamentoServiceTest" time="0.25">
+    <testcase name="naoDeveSalvarUmLancamentoQuandoHouverErroDeValidacao" classname="github.madeoliveira.controlefinanceiro.service.LancamentoServiceTest" time="0.084"/>
+    <testcase name="deveAtualizarOStatusDeUmLancamento" classname="github.madeoliveira.controlefinanceiro.service.LancamentoServiceTest" time="0.108"/>
+    <testcase name="deveSalvarUmLancamento" classname="github.madeoliveira.controlefinanceiro.service.LancamentoServiceTest" time="0.007"/>
+    <testcase name="deveAtualizarUmLancamento" classname="github.madeoliveira.controlefinanceiro.service.LancamentoServiceTest" time="0.004"/>
+    <testcase name="deveLancarErroAoTentarDeletarUmLancamentoQueAindaNaoFoiSalvo" classname="github.madeoliveira.controlefinanceiro.service.LancamentoServiceTest" time="0.009"/>
+    <testcase name="deveFiltrarLancamentos" classname="github.madeoliveira.controlefinanceiro.service.LancamentoServiceTest" time="0.016"/>
+    <testcase name="deveDeletarUmLancamento" classname="github.madeoliveira.controlefinanceiro.service.LancamentoServiceTest" time="0.005"/>
+    <testcase name="deveLancarErroAoTentaAtualizarUmLancamentoQueAindaNaoFoiSalvo" classname="github.madeoliveira.controlefinanceiro.service.LancamentoServiceTest" time="0.008"/>
+  </testsuite>
+</testrun>
