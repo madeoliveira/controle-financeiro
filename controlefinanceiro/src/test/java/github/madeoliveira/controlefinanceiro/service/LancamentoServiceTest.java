@@ -68,13 +68,29 @@ public class LancamentoServiceTest {
 		Mockito.verify(repository, Mockito.times(1)).save(lancamentoSalvo);
 
 	}
+
 	@Test
-	public void naoDeveLancarErroAoTentaAtualizarUmLancamentoQueAindaNaoFoiSalvo() {
-		Lancamento lancamentoASalvar = LancamentoRepositoryTest.criarLancamento();
-		Assertions.catchThrowableOfType(() -> service.atualizar(lancamentoASalvar), NullPointerException.class );
-		Mockito.verify(repository,Mockito.never()).save(lancamentoASalvar);
+	public void deveLancarErroAoTentaAtualizarUmLancamentoQueAindaNaoFoiSalvo() {
+		Lancamento lancamento = LancamentoRepositoryTest.criarLancamento();
+		Assertions.catchThrowableOfType(() -> service.atualizar(lancamento), NullPointerException.class);
+		Mockito.verify(repository, Mockito.never()).save(lancamento);
 
 	}
 
-	
+	@Test
+	public void deveDeletarUmLancamento() {
+		Lancamento lancamento = LancamentoRepositoryTest.criarLancamento();
+		lancamento.setId(1l);
+		service.deletar(lancamento);
+		Mockito.verify(repository).delete(lancamento);
+	}
+
+	@Test
+	public void deveLancarErroAoTentarDeletarUmLancamentoQueAindaNaoFoiSalvo() {
+		Lancamento lancamento = LancamentoRepositoryTest.criarLancamento();
+		Assertions.catchThrowableOfType(() -> service.deletar(lancamento), NullPointerException.class);
+		Mockito.verify(repository, Mockito.never()).delete(lancamento);
+
+	}
+
 }

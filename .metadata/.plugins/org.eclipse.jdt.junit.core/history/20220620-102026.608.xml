@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="LancamentoServiceTest" project="controlefinanceiro" tests="4" started="4" failures="0" errors="0" ignored="0">
+  <testsuite name="github.madeoliveira.controlefinanceiro.service.LancamentoServiceTest" time="0.107">
+    <testcase name="naoDeveSalvarUmLancamentoQuandoHouverErroDeValidacao" classname="github.madeoliveira.controlefinanceiro.service.LancamentoServiceTest" time="0.082"/>
+    <testcase name="deveSalvarUmLancamento" classname="github.madeoliveira.controlefinanceiro.service.LancamentoServiceTest" time="0.01"/>
+    <testcase name="deveAtualizarUmLancamento" classname="github.madeoliveira.controlefinanceiro.service.LancamentoServiceTest" time="0.005"/>
+    <testcase name="naoDeveLancarErroAoTentaAtualizarUmLancamentoQueAindaNaoFoiSalvo" classname="github.madeoliveira.controlefinanceiro.service.LancamentoServiceTest" time="0.005"/>
+  </testsuite>
+</testrun>
